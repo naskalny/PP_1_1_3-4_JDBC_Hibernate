@@ -22,11 +22,4 @@ public class Util {
         }
         return connection;
     }
-
-    public void closeConnection(Connection connection) throws SQLException {
-        if (connection != null) {
-            connection.close();
-        }
-    }
-
 }

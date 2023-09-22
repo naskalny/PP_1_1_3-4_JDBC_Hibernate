@@ -8,22 +8,27 @@ import java.util.List;
 
 public class UserServiceImpl implements UserService {
     private final UserDaoJDBCImpl userDaoJDBC = new UserDaoJDBCImpl();
+    @Override
     public void createUsersTable() {
         userDaoJDBC.createUsersTable();
     }
 
+    @Override
     public void dropUsersTable() {
         userDaoJDBC.dropUsersTable();
     }
 
+    @Override
     public void saveUser(String name, String lastName, byte age) {
         userDaoJDBC.saveUser(name, lastName, age);
     }
 
+    @Override
     public void removeUserById(long id) {
         userDaoJDBC.removeUserById(id);
     }
 
+    @Override
     public List<User> getAllUsers() {
         try {
             return userDaoJDBC.getAllUsers();
@@ -33,6 +38,7 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
+    @Override
     public void cleanUsersTable() {
         userDaoJDBC.cleanUsersTable();
     }
