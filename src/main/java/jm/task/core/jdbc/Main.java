@@ -1,33 +1,33 @@
 package jm.task.core.jdbc;
 import jm.task.core.jdbc.dao.UserDao;
+import jm.task.core.jdbc.dao.UserDaoHibernateImpl;
 import jm.task.core.jdbc.dao.UserDaoJDBCImpl;
 import jm.task.core.jdbc.model.User;
+import jm.task.core.jdbc.service.UserService;
+import jm.task.core.jdbc.service.UserServiceImpl;
+
 import java.sql.SQLException;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        UserDao userDao = new UserDaoJDBCImpl();
 
-        userDao.createUsersTable();
+        UserService userService = new UserServiceImpl();
 
-        userDao.saveUser("John", "Dope", (byte) 7);
-        userDao.saveUser("Oleg", "Tinkoff", (byte) 43);
-        userDao.saveUser("Michael", "Jackson", (byte) 12);
-        userDao.saveUser("Elisabet", "Olsen", (byte) 27);
+        userService.createUsersTable();
+        userService.saveUser("John", "Dope", (byte) 7);
+        userService.saveUser("Oleg", "Tinkoff", (byte) 43);
+        userService.saveUser("Michael", "Jackson", (byte) 12);
+        userService.saveUser("Elisabet", "Olsen", (byte) 27);
 
-        try {
-            List<User> userList = userDao.getAllUsers();
-            for (User user : userList) {
-                System.out.println(user);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        List<User> userList = userService.getAllUsers();
+        for (User user : userList) {
+            System.out.println(user);
         }
 
-        userDao.cleanUsersTable();
+        userService.cleanUsersTable();
 
-        userDao.dropUsersTable();
+        userService.dropUsersTable();
 
     }
 }
