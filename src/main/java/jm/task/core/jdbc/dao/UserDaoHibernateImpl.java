@@ -88,7 +88,7 @@ public class UserDaoHibernateImpl implements UserDao {
     }
 
     @Override
-    public List<User> getAllUsers() {
+    public List<User> getAllUsers() throws Exception{
         Transaction transaction = null;
         try (Session session = Util.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
@@ -100,8 +100,8 @@ public class UserDaoHibernateImpl implements UserDao {
                 transaction.rollback();
             }
             e.printStackTrace();
+            throw new Exception("Произошла ошибка при получении списка пользователей.", e);
         }
-        return null;
     }
 
     @Override

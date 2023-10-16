@@ -16,7 +16,7 @@ import java.util.Properties;
 public class Util {
     private static final String URL = "jdbc:mysql://localhost:3306/db";
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "root";
+    private static final String PASSWORD = "rootroot";
 
 
     public Connection getConnection (){
@@ -49,6 +49,7 @@ public class Util {
                 settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
 
                 configuration.setProperties(settings);
+                configuration.setProperty("hibernate.hbm2ddl.auto", "create");
 
                 configuration.addAnnotatedClass(User.class);
 
